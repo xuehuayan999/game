@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>今天吃什么 — 声音触发转盘 (香港美食)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>今天吃什么？（说“今天吃什么”启动）</h1>
+
+    <div class="controls">
+      <button id="listenBtn">开启语音监听</button>
+      <button id="spinBtn">手动转盘 (Test)</button>
+      <span id="status">未监听</span>
+    </div>
+
+    <div class="wheel-wrap">
+      <canvas id="wheel" width="600" height="600"></canvas>
+      <div id="pointer">▲</div>
+    </div>
+
+    <div id="result" class="hidden">
+      <h2>结果</h2>
+      <p id="resultText"></p>
+      <button id="closeResult">好的</button>
+    </div>
+
+    <p class="hint">提示：首次使用会要求麦克风权限。若浏览器不支持语音识别，请用手动按钮测试。</p>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
