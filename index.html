@@ -3,33 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>今天吃什么 — 声音触发转盘 (香港美食)</title>
+  <title>今天吃什么 — 香港美食游戏机</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>今天吃什么？（说“今天吃什么”启动）</h1>
+  <main class="game-shell">
+    <div class="cabinet">
+      <header class="cabinet-top">
+        <div class="branding">FOOD-ARCADE</div>
+        <div class="screen-title">香港今日餐飲選擇器</div>
+      </header>
 
-    <div class="controls">
-      <button id="listenBtn">开启语音监听</button>
-      <button id="spinBtn">手动转盘 (Test)</button>
-      <span id="status">未监听</span>
+      <section class="screen">
+        <h1 class="game-title">今天吃什么？</h1>
+
+        <div class="controls">
+          <div class="left-controls">
+            <button id="listenBtn" class="btn primary">🎙 语音</button>
+            <button id="spinBtn" class="btn accent">🎰 转盘</button>
+            <button id="againBtn" class="btn ghost">🔁 换一个</button>
+          </div>
+
+          <div class="filters">
+            <label>类型
+              <select id="cuisineFilter">
+                <option value="all">全部</option>
+                <option value="港式">港式</option>
+                <option value="中式">中式</option>
+                <option value="日式">日式</option>
+                <option value="韩式">韩式</option>
+                <option value="东南亚">东南亚</option>
+                <option value="甜品">甜品</option>
+              </select>
+            </label>
+
+            <label class="inline"><input type="checkbox" id="vegOnly"> 素食</label>
+
+            <label>价位
+              <select id="priceFilter">
+                <option value="any">任意</option>
+                <option value="1">$ - 便宜</option>
+                <option value="2">$$ - 中等</option>
+                <option value="3">$$$ - 高级</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="wheel-wrap">
+          <canvas id="wheel" width="620" height="620"></canvas>
+          <div id="pointer">▲</div>
+        </div>
+
+        <div id="result" class="result hidden">
+          <p class="result-label">今晚就吃</p>
+          <p id="resultText" class="result-name">—</p>
+          <div class="result-actions">
+            <a id="mapLink" class="link" target="_blank" rel="noopener">在地图找附近</a>
+            <button id="closeResult" class="btn ghost">好的</button>
+          </div>
+          <p class="result-note">也可按空格或说“换一个”来重新抽一次</p>
+        </div>
+
+        <p class="hint">提示：说“今天吃什么”启动；支持“换一个/再来一次/不想吃这个”语音指令。</p>
+      </section>
+
+      <footer class="cabinet-bottom">
+        <div class="credits">· 本地样板建议仅供参考 ·</div>
+      </footer>
     </div>
-
-    <div class="wheel-wrap">
-      <canvas id="wheel" width="600" height="600"></canvas>
-      <div id="pointer">▲</div>
-    </div>
-
-    <div id="result" class="hidden">
-      <h2>结果</h2>
-      <p id="resultText"></p>
-      <button id="closeResult">好的</button>
-    </div>
-
-    <p class="hint">提示：首次使用会要求麦克风权限。若浏览器不支持语音识别，请用手动按钮测试。</p>
-
   </main>
+
+  <audio id="sfx-spin" src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA..." preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
